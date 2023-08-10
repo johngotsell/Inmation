@@ -5,8 +5,7 @@
             "name": "test-environment",
             "hostname": "localhost",
             "port": 8002,
-            "usr": "so-web",
-            "pwd": "Demo123!"
+            "authority": "ad"
         },
         {
             "name": "stage-environment",
