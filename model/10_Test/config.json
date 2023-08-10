@@ -1,0 +1,19 @@
+{
+    "version": "1.0",
+    "objects": [
+        {
+            "path": "/System/VMGOTSELJO1/WebApiContext",
+            "class": "GenFolder",
+            "ObjectName": "WebApiContext",
+            "ScriptLibrary": {
+                "explicit": false,
+                "ScriptList": [
+                    {
+                        "LuaModuleName": "my-lib",
+                        "scriptReference": "scripts.my-lib"
+                    }
+                ]
+            }
+        }
+    ]
+}

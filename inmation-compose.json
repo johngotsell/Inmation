@@ -1,0 +1,79 @@
+{
+    "version": "1.0",
+    "connections": [
+        {
+            "name": "test-environment",
+            "hostname": "localhost",
+            "port": 8002,
+            "usr": "so-web",
+            "pwd": "Demo123!"
+        },
+        {
+            "name": "stage-environment",
+            "hostname": "<HOSTNAME>",
+            "port": 8002,
+            "secure": true,
+            "usr": "<USERNAME>",
+            "pwd": "<PASSWORD>"
+        },
+        {
+            "name": "prod-environment",
+            "hostname": "<HOSTNAME>",
+            "port": 8002,
+            "secure": true,
+            "authority": "ad"
+        }
+    ],
+    "scriptReferences": [
+        {
+            "namespace": "scripts",
+            "folderPath": "./scripts"
+        }
+    ],
+    "actions": [
+        {
+            "name": "Create Objects (mass)",
+            "type": "mass",
+            "model": "./model/10_test"
+        },
+        {
+            "name": "Flow Create Objects and Reinit",
+            "type": "action-flow",
+            "steps": [
+                "Create Objects (mass)",
+                "Reinit Lua Script Objects"
+            ]
+        },
+        {
+            "name": "Exec Function 'say_hello' example",
+            "type": "exec-function",
+            "ctx": "/System",
+            "lib": "my-lib",
+            "func": "say_hello",
+            "farg": {
+                "name": "inmation user"
+            }
+        },
+        {
+            "name": "RunScript ObjectName example",
+            "type": "run-script",
+            "ctx": "/System",
+            "script": "local selfObj = inmation.getself()\nreturn inmation.getvalue(selfObj:path() .. '.ObjectName')"
+        },
+        {
+            "name": "Run 'hello-world' script example",
+            "type": "run-script",
+            "ctx": "/System",
+            "scriptRef": "scripts.hello-world"
+        },
+        {
+            "name": "Reinit Lua Script Objects",
+            "type": "reinit-objects",
+            "ctx": "/System",
+            "data": {
+                "path": "/System",
+                "delay": 8
+            }
+        }
+    ]
+}
